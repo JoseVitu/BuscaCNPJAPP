@@ -1,0 +1,18 @@
+<div class="form-container">
+  <input type="text" [ngModel]="cnpj" (ngModelChange)="formatarCnpj($event)" placeholder="Digite o CNPJ">
+  <button (click)="buscarEmpresa()" class="buscar">Buscar</button>
+
+  <div *ngIf="empresa">
+    <p><strong>Razão Social:</strong> {{ empresa.razao_social }}</p>
+    <p><strong>Cidade:</strong> {{ empresa.estabelecimento?.cidade?.nome }}</p>
+    <p><strong>Situação Cadastral:</strong> {{ empresa.estabelecimento?.situacao_cadastral }}</p>
+    <p><strong>Data de Cadastro:</strong> <input type="date" [(ngModel)]="empresa.data_cadastro"></p>
+    <p><strong>Endereço:</strong> <input type="text" [(ngModel)]="empresa.endereco"></p>
+    <p><strong>Telefone:</strong> <input type="text" [ngModel]="empresa?.telefone" (ngModelChange)="formatarTelefone($event)"></p>
+    <button (click)="salvarEmpresa()" class="salvar">Salvar Empresa</button>
+  </div>
+
+  <div *ngIf="erro" class="error">
+    {{ erro }}
+  </div>
+</div>
